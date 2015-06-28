@@ -42,7 +42,7 @@ script:
   - phpunit -c phpunit.xml.dist
   ## LINT
   ##| grep -v 'No syntax errors detected'
-  - find ./src/ -type f -name \*.php -exec php -l {} \;
+  - find ./app/ -type f -name \*.php -exec php -l {} \;
 
 after_script:
 
