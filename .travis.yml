@@ -20,9 +20,13 @@ before_script:
   ## PHPLOC
   - curl -o phploc.phar https://phar.phpunit.de/phploc.phar
 
+  # PHALCON
+  - git clone git://github.com/phalcon/cphalcon.git $TRAVIS_BUILD_DIR/vendor/cphalcon
+  - cd $TRAVIS_BUILD_DIR/vendor/cphalcon/build && ./install && cd $TRAVIS_BUILD_DIR
+  - echo 'extension=phalcon.so' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 script:
   ## PHP_CodeSniffer
-  - phpcs --report=emacs --standard=PSR2 . --ignore=vendor/*  --ignore=tools/*
+  - phpcs --report=emacs --standard=PSR2 . --ignore=vendor/*  --ignore=tools/* --ignore=tests/bootstrap.unit.php
  ## PHP Mess Detector
   - phpmd . text cleancode --exclude vendor
   - phpmd . text codesize --exclude vendor
