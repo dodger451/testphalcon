@@ -33,16 +33,15 @@ script:
   ## PHPLOC
   - php -d error_reporting=1 phploc.phar . --exclude vendor
   ## PHPUNIT
-  - mkdir -p build/logs
-  - mkdir -p build/cov/
+  - mkdir -p build/unit
+  - mkdir -p build/coverage
   - phpunit -c phpunit.xml.dist
   ## LINT
   ##| grep -v 'No syntax errors detected'
   - find ./src/ -type f -name \*.php -exec php -l {} \;
 
 after_script:
-  - php vendor/bin/coveralls
-  
+
 ##notifications:
 ##  email:
-##    david-testravis@latotzky.de
+##    david-testphalcon@latotzky.de
